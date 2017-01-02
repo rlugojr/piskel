@@ -219,7 +219,7 @@
   ns.FramesListController.prototype.onSortableStop_ = function (event, ui) {
     this.justDropped = true;
 
-    this.resizeTimer = window.setTimeout($.proxy(function() {
+    window.setTimeout($.proxy(function() {
       this.justDropped = false;
     }, this), 200);
   };
