@@ -141,6 +141,12 @@
   "js/controller/dialogs/ImportImageController.js",
   "js/controller/dialogs/BrowseLocalController.js",
   "js/controller/dialogs/CheatsheetController.js",
+  "js/controller/dialogs/merge/steps/AbstractMergeStep.js",
+  "js/controller/dialogs/merge/steps/AdjustSize.js",
+  "js/controller/dialogs/merge/steps/InsertLocation.js",
+  "js/controller/dialogs/merge/steps/InvalidFile.js",
+  "js/controller/dialogs/merge/steps/SelectFile.js",
+  "js/controller/dialogs/merge/MergeController.js",
   "js/controller/dialogs/PerformanceInfoController.js",
   "js/controller/dialogs/UnsupportedBrowserController.js",
 
@@ -152,6 +158,7 @@
   "js/widgets/HslRgbColorPicker.js",
   "js/widgets/SizeInput.js",
   "js/widgets/SynchronizedInputs.js",
+  "js/widgets/Wizard.js",
 
   // Services
   "js/service/storage/StorageService.js",
