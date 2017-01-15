@@ -15,6 +15,15 @@
       return templates[templateId];
     },
 
+    getAsHTML : function (templateId) {
+      var template = ns.Template.get(templateId);
+      if (!template) {
+        return;
+      }
+
+      return ns.Template.createFromHTML(template);
+    },
+
     createFromHTML : function (html) {
       var dummyEl = document.createElement('div');
       dummyEl.innerHTML = html;
