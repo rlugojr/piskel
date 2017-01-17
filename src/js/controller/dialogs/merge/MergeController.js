@@ -22,6 +22,10 @@
 
   ns.MergeController = function (piskelController) {
     this.piskelController = piskelController;
+
+    // Merge data object used by steps to communicate and share their
+    // results.
+    this.mergeData = {};
   };
 
   pskl.utils.inherit(ns.MergeController, pskl.controller.dialogs.AbstractDialogController);
@@ -43,6 +47,7 @@
       step.instance = null;
       step.el = null;
     }.bind(this));
+
     this.superclass.destroy.call(this);
   };
 
@@ -65,10 +70,11 @@
 
   ns.MergeController.prototype.back = function (stepInstance) {
     this.wizard.back();
+    this.wizard.getCurrentStep().instance.onShow();
   };
 
   ns.MergeController.prototype.next = function (stepInstance) {
-    var step = this.getStep_(stepInstance);
+    var step = this.wizard.getCurrentStep();
     var nextStep = null;
     if (step.name === 'SELECT_FILE') {
       this.wizard.goTo('ADJUST_SIZE');
@@ -77,16 +83,6 @@
     } else {
       // do nothing but
     }
-  };
-
-  ns.MergeController.prototype.getStep_ = function (stepInstance) {
-    var match = null;
-    Object.keys(this.steps).forEach(function (stepName) {
-      var step = this.steps[stepName];
-      if (step.instance === stepInstance) {
-        match = step;
-      }
-    }.bind(this));
-    return match;
+    this.wizard.getCurrentStep().instance.onShow();
   };
 })();
