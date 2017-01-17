@@ -10,7 +10,7 @@
 
 <script type="text/template" id="merge-adjust-size">
 <div>
-  <div>YOU HAZ TO ADJUST ZE SIZE</div>
+  <div class="mergefile-name"></div>
   <button class="merge-cancel-button button">cancel</button>
   <button class="merge-back-button button">back</button>
   <button class="merge-next-button button button-primary">next</button>
@@ -37,7 +37,16 @@
 
 <script type="text/template" id="merge-select-file">
 <div>
-  <div>THIS IS ZE FIRST STEP</div>
+  <div>
+    Select an animation to merge with your current sprite.
+    You can either use a single image or an animation saved as a .piskel file.
+  </div>
+  <div>
+    <button class="button button-primary select-mergefile-button">Select a file</button>
+    <input style="display:none"
+          type="file" class="select-mergefile-input"
+          value="file" accept=".piskel,.png,.bmp,.gif,.jpg,.jpeg"/>
+  </div>
   <button class="merge-cancel-button button">cancel</button>
   <button class="merge-next-button button button-primary">next</button>
 </div>
