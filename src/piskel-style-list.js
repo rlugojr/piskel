@@ -23,6 +23,7 @@
   "css/dialogs-cheatsheet.css",
   "css/dialogs-create-palette.css",
   "css/dialogs-import-image.css",
+  "css/dialogs-merge.css",
   "css/dialogs-performance-info.css",
   "css/dialogs-unsupported-browser.css",
   "css/notifications.css",
