@@ -42,7 +42,7 @@
   ns.ColorsList.prototype.destroy = function () {
     pskl.utils.Event.removeAllEventListeners(this);
 
-    $(this.container).sortable( "destroy" );
+    $(this.container).sortable('destroy');
 
     this.hslRgbColorPicker.destroy();
     this.container = null;
