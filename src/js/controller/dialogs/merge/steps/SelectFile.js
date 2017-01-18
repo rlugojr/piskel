@@ -38,9 +38,9 @@
 
   ns.SelectFile.prototype.refresh_ = function () {
     if (!!this.mergeData.mergeFile) {
-      this.nextButton.removeAttribute("disabled");
+      this.nextButton.removeAttribute('disabled');
     } else {
-      this.nextButton.setAttribute("disabled", true);
+      this.nextButton.setAttribute('disabled', true);
     }
   };
 })();
