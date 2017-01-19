@@ -8,11 +8,8 @@
   top : 50%;
   left : 50%;
   position : absolute;
-  margin-left: -250px;
-}
-
-.show #dialog-container.import-image {
-  margin-top: -150px;
+  margin-left: -275px;
+  margin-top: -180px;
 }
 
 .import-subsection {
