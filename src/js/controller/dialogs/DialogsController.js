@@ -42,7 +42,7 @@
     this.dialogContainer_ = document.getElementById('dialog-container');
     this.dialogWrapper_ = document.getElementById('dialog-container-wrapper');
 
-    $.subscribe(Events.DIALOG_DISPLAY, this.onDialogDisplayEvent_.bind(this));
+    $.subscribe(Events.DIALOG_SHOW, this.onDialogDisplayEvent_.bind(this));
     $.subscribe(Events.DIALOG_HIDE, this.hideDialog.bind(this));
 
     var createPaletteShortcut = pskl.service.keyboard.Shortcuts.COLOR.CREATE_PALETTE;

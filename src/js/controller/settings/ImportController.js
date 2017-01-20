@@ -73,14 +73,14 @@
   };
 
   ns.ImportController.prototype.onBrowseLocalClick_ = function (evt) {
-    $.publish(Events.DIALOG_DISPLAY, {
+    $.publish(Events.DIALOG_SHOW, {
       dialogId : 'browse-local'
     });
     this.closeDrawer_();
   };
 
   ns.ImportController.prototype.onMergeButtonClick_ = function (evt) {
-    $.publish(Events.DIALOG_DISPLAY, {
+    $.publish(Events.DIALOG_SHOW, {
       dialogId : 'merge'
     });
     this.closeDrawer_();
@@ -106,7 +106,7 @@
     if (files.length == 1) {
       var file = files[0];
       if (this.isImage_(file)) {
-        $.publish(Events.DIALOG_DISPLAY, {
+        $.publish(Events.DIALOG_SHOW, {
           dialogId : 'import-image',
           initArgs : file
         });
