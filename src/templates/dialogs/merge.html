@@ -53,16 +53,11 @@
           type="file" class="select-mergefile-input"
           value="file" accept=".piskel,.png,.bmp,.gif,.jpg,.jpeg"/>
   </div>
-  <div class="output-mergefile-container">
-    <div class="output-mergefile-missing">No file selected!</div>
-    <div class="output-mergefile">
-      <div class="output-mergefile-preview"></div>
-      <div class="output-mergefile-meta">
-        <div class="output-mergile-name"></div>
-        <div class="output-mergile-dimensions"></div>
-        <div class="output-mergile-frames"></div>
-        <div class="output-mergile-layers"></div>
-      </div>
+  <div class="mergefile-container">
+    <div class="mergefile-missing">No file selected!</div>
+    <div class="mergefile">
+      <div class="mergefile-preview"></div>
+      <div class="mergefile-meta"></div>
     </div>
   </div>
   <div class="merge-step-buttons">
@@ -70,4 +65,19 @@
     <button class="merge-next-button button button-primary">next</button>
   </div>
 </div>
+</script>
+
+<script type="text/template" id="mergefile-meta-content">
+  <div class="mergefile-name">
+    <span class="mergefile-meta-label">Name:</span> {{name}}
+  </div>
+  <div class="mergefile-dimensions">
+    <span class="mergefile-meta-label">Dimensions:</span> {{dimensions}}
+  </div>
+  <div class="mergefile-frames">
+    <span class="mergefile-meta-label">Frames:</span> {{frames}}
+  </div>
+  <div class="mergefile-layers">
+    <span class="mergefile-meta-label">Layers:</span> {{layers}}
+  </div>
 </script>
