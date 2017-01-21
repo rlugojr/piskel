@@ -10,4 +10,9 @@
   ns.InsertLocation.prototype.init = function () {
     this.superclass.init.call(this);
   };
+
+  ns.InsertLocation.prototype.onShow = function () {
+    var origin = this.mergeData.origin;
+    this.container.querySelector('.merge-anchor-origin').textContent = origin;
+  };
 })();

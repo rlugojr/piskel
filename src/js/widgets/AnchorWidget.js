@@ -14,7 +14,9 @@
     '<div class="anchor-option"  title="bottom"        data-origin="BOTTOM"></div>' +
     '<div class="anchor-option"  title="bottom right"  data-origin="BOTTOMRIGHT"></div>';
 
-  ns.AnchorWidget = function (container) {
+  ns.AnchorWidget = function (container, onChangeCallback) {
+    this.onChangeCallback = onChangeCallback;
+
     this.wrapper = document.createElement('div');
     this.wrapper.classList.add('anchor-wrapper');
     this.wrapper.innerHTML = WIDGET_TEMPLATE;
@@ -52,15 +54,19 @@
 
   ns.AnchorWidget.prototype.setOrigin = function (origin) {
     this.origin = origin;
-    var previous = document.querySelector('.' + OPTION_CLASSNAME + '.selected');
+    var previous = this.wrapper.querySelector('.' + OPTION_CLASSNAME + '.selected');
     if (previous) {
       previous.classList.remove('selected');
     }
 
-    var selected = document.querySelector('.' + OPTION_CLASSNAME + '[data-origin="' + origin + '"]');
+    var selected = this.wrapper.querySelector('.' + OPTION_CLASSNAME + '[data-origin="' + origin + '"]');
     if (selected) {
       selected.classList.add('selected');
       this.refreshNeighbors_(selected);
+    }
+
+    if (typeof this.onChangeCallback === 'function') {
+      this.onChangeCallback(origin);
     }
   };
 
@@ -81,7 +87,7 @@
   };
 
   ns.AnchorWidget.prototype.refreshNeighbors_ = function (selected) {
-    var options = document.querySelectorAll('.' + OPTION_CLASSNAME);
+    var options = this.wrapper.querySelectorAll('.' + OPTION_CLASSNAME);
     for (var i = 0 ; i < options.length ; i++) {
       options[i].removeAttribute('data-neighbor');
     }
