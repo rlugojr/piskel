@@ -9,6 +9,8 @@
 
   ns.AdjustSize.prototype.init = function () {
     this.superclass.init.call(this);
+    var anchorContainer = this.container.querySelector('.merge-anchor-container');
+    this.anchorWidget = new pskl.controller.settings.resize.AnchorWidget(anchorContainer);
   };
 
   ns.AdjustSize.prototype.onShow = function () {

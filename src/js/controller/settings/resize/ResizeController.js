@@ -6,7 +6,7 @@
 
     this.container = document.querySelector('.resize-canvas');
 
-    var anchorWidgetContainer = this.container.querySelector('.resize-origin-container');
+    var anchorWidgetContainer = this.container.querySelector('.resize-anchor-container');
     this.anchorWidget = new ns.AnchorWidget(anchorWidgetContainer);
     this.defaultSizeController = new ns.DefaultSizeController(piskelController);
   };
