@@ -8,7 +8,7 @@
 
 .wizard-step {
   z-index: -1;
-  margin-left: 100%;
+  margin-left: calc(100% + 5px);
   position: absolute;
 }
 

@@ -17,6 +17,8 @@
   height: 100%;
   padding: 20px 10px 10px;
   box-sizing: border-box;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+  background: #444;
 }
 
 .merge-step-buttons {
@@ -42,18 +44,53 @@
   margin-right: 10px;
 }
 
-.output-mergefile-container {
+.mergefile-container {
   margin: 20px 0;
   height: 70px;
 }
 
-.output-mergefile {
+.mergefile,
+.has-merge-piskel .mergefile-missing {
   display: none;
 }
 
-.output-mergefile-missing {
+.mergefile-missing {
+  display: block;
+}
+
+.has-merge-piskel .mergefile {
+  display: flex;
+}
+
+.mergefile-preview {
+  width: 200px;
+  height: 115px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #666;
+}
+
+.mergefile-preview canvas {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.mergefile-meta {
+  width: 50%;
+  padding: 5px 0 0 10px;
+  box-sizing: border-box;
+}
+
+.mergefile-missing {
   text-align: center;
   line-height: 70px;
   font-style: italic;
   color: #aaa;
+}
+
+.mergefile-meta-label {
+  color: var(--highlight-color);
 }
