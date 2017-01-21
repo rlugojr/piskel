@@ -108,6 +108,6 @@
   };
 
   ns.SelectFile.prototype.onPiskelFileError_ = function () {
-    console.error("Could not load the animation");
+    console.error('Could not load the animation');
   };
 })();

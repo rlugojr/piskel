@@ -38,5 +38,6 @@
   "css/bootstrap/bootstrap-tooltip-custom.css",
   "css/frames-list.css",
   "css/minimap.css",
+  "css/widgets-anchor.css",
   "css/widgets-wizard.css"
 ];

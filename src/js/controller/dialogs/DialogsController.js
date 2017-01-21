@@ -56,6 +56,8 @@
     this.dialogWrapper_.classList.add('animated');
     pskl.utils.Event.addEventListener(this.dialogWrapper_, 'click', this.onWrapperClicked_, this);
 
+    var mergeShortcut = pskl.service.keyboard.Shortcuts.MISC.MERGE_ANIMATION;
+    pskl.app.shortcutService.registerShortcut(mergeShortcut, this.onMergeShortcut_.bind(this));
   };
 
   ns.DialogsController.prototype.onCreatePaletteShortcut_ = function () {
@@ -64,6 +66,10 @@
 
   ns.DialogsController.prototype.onCheatsheetShortcut_ = function () {
     this.toggleDialog_('cheatsheet');
+  };
+
+  ns.DialogsController.prototype.onMergeShortcut_ = function () {
+    this.toggleDialog_('merge');
   };
 
   /**
