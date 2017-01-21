@@ -7,7 +7,7 @@
     this.container = document.querySelector('.resize-canvas');
 
     var anchorWidgetContainer = this.container.querySelector('.resize-anchor-container');
-    this.anchorWidget = new ns.AnchorWidget(anchorWidgetContainer);
+    this.anchorWidget = new pskl.widgets.AnchorWidget(anchorWidgetContainer);
     this.defaultSizeController = new ns.DefaultSizeController(piskelController);
   };
 
@@ -28,7 +28,7 @@
     });
 
     var settings = pskl.UserSettings.get('RESIZE_SETTINGS');
-    var origin = ns.AnchorWidget.ORIGIN[settings.origin] || ns.AnchorWidget.ORIGIN.TOPLEFT;
+    var origin = pskl.widgets.AnchorWidget.ORIGIN[settings.origin] || 'TOPLEFT';
     this.anchorWidget.setOrigin(origin);
 
     if (settings.resizeContent) {
