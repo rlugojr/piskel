@@ -1,5 +1,5 @@
 (function () {
-  var ns = $.namespace('pskl.controller.settings.resize');
+  var ns = $.namespace('pskl.widgets');
 
   var OPTION_CLASSNAME = 'anchor-option';
   // Maybe move to HTML ...

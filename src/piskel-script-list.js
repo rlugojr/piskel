@@ -126,7 +126,6 @@
   "js/controller/settings/exportimage/ZipExportController.js",
   "js/controller/settings/exportimage/MiscExportController.js",
   "js/controller/settings/exportimage/ExportController.js",
-  "js/controller/settings/resize/AnchorWidget.js",
   "js/controller/settings/resize/ResizeController.js",
   "js/controller/settings/resize/DefaultSizeController.js",
   "js/controller/settings/SaveController.js",
@@ -154,6 +153,7 @@
   "js/controller/dialogs/DialogsController.js",
 
   // Widgets
+  "js/widgets/AnchorWidget.js",
   "js/widgets/ColorsList.js",
   "js/widgets/HslRgbColorPicker.js",
   "js/widgets/SizeInput.js",
