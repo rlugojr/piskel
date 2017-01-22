@@ -136,7 +136,6 @@
   // Dialogs sub-controllers
   "js/controller/dialogs/AbstractDialogController.js",
   "js/controller/dialogs/CreatePaletteController.js",
-  "js/controller/dialogs/ImportImageController.js",
   "js/controller/dialogs/BrowseLocalController.js",
   "js/controller/dialogs/CheatsheetController.js",
   "js/controller/dialogs/merge/steps/AbstractMergeStep.js",
