@@ -8,6 +8,58 @@
   </div>
 </script>
 
+<script type="text/template" id="merge-image-import">
+<div class="merge-step-container">
+  <div>
+    <form action="" method="POST" name="import-image-form">
+      <div class="import-section">
+        <span class="dialog-section-title">Name :</span><span class="import-image-file-name"></span>
+      </div>
+      <div class="import-section">
+        <div class="import-section-preview-title">Preview :</div>
+        <div class="import-section-preview"></div>
+      </div>
+      <div class="import-section">
+        <label class="dialog-section-radio-label">
+          <input class="dialog-section-radio" name="import-type" value="single" type="radio" checked="checked">
+          Import as single image
+        </label>
+      </div>
+      <div class="import-section import-subsection">
+        <span class="dialog-section-title">Resize to</span>
+        <input type="text" class="textfield import-size-field" name="resize-width"/>x
+        <input type="text" class="textfield import-size-field" name="resize-height"/>
+      </div>
+      <div class="import-section import-subsection">
+        <span class="import-section-title">Smooth resize</span>
+        <input type="checkbox" class="checkbox-fix" checked="checked" name="smooth-resize-checkbox" value="1"/>
+      </div>
+      <div class="import-section">
+        <label class="dialog-section-radio-label">
+          <input class="dialog-section-radio" name="import-type" value="sheet" type="radio">
+          Import as spritesheet
+        </label>
+      </div>
+      <div class="import-section import-subsection">
+        <span class="dialog-section-title">Frame size</span>
+        <input type="text" class="textfield import-size-field" name="frame-size-x"/>x
+        <input type="text" class="textfield import-size-field" name="frame-size-y"/>
+      </div>
+      <div class="import-section import-subsection">
+        <span class="dialog-section-title">Offset</span>
+        <input type="text" class="textfield import-size-field" name="frame-offset-x"/>x
+        <input type="text" class="textfield import-size-field" name="frame-offset-y"/>
+      </div>
+    </form>
+  </div>
+  <div class="merge-step-buttons">
+    <button class="merge-cancel-button button">cancel</button>
+    <button class="merge-back-button button">back</button>
+    <button class="merge-next-button button button-primary">next</button>
+  </div>
+</div>
+</script>
+
 <script type="text/template" id="merge-select-file">
 <div class="merge-step-container">
   <div>
@@ -29,6 +81,7 @@
   </div>
   <div class="merge-step-buttons">
     <button class="merge-cancel-button button">cancel</button>
+    <button class="merge-back-button button">back</button>
     <button class="merge-next-button button button-primary">next</button>
   </div>
 </div>

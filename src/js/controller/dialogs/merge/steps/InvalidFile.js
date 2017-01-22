@@ -1,7 +1,7 @@
 (function () {
   var ns = $.namespace('pskl.controller.dialogs.merge.steps');
 
-  ns.InvalidFile = function () {
+  ns.InvalidFile = function (piskelController, mergeController, container) {
     this.superclass.constructor.apply(this, arguments);
   };
 
