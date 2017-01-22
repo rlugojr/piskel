@@ -9,10 +9,16 @@
 
   ns.InsertLocation.prototype.init = function () {
     this.superclass.init.call(this);
+    this.framePreview = this.container.querySelector('.insert-frame-preview');
+    this.framePickerWidget = new pskl.widgets.FramePicker(this.piskelController, this.framePreview);
+    this.framePickerWidget.init();
   };
 
   ns.InsertLocation.prototype.onShow = function () {
-    var origin = this.mergeData.origin;
-    this.container.querySelector('.merge-anchor-origin').textContent = origin;
+  };
+
+  ns.InsertLocation.prototype.destroy = function () {
+    this.framePickerWidget.destroy();
+    this.superclass.destroy.call(this);
   };
 })();

@@ -155,6 +155,7 @@
   // Widgets
   "js/widgets/AnchorWidget.js",
   "js/widgets/ColorsList.js",
+  "js/widgets/FramePicker.js",
   "js/widgets/HslRgbColorPicker.js",
   "js/widgets/SizeInput.js",
   "js/widgets/SynchronizedInputs.js",

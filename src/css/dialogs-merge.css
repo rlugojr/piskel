@@ -1,11 +1,11 @@
 #dialog-container.merge {
-  width: 450px;
-  height: 300px;
+  width: 550px;
+  height: 360px;
   top : 50%;
   left : 50%;
   position : absolute;
-  margin-left: -225px;
-  margin-top: -150px;
+  margin-left: -275px;
+  margin-top: -180px;
 }
 
 .merge .dialog-content {
@@ -25,7 +25,6 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-  width: 100%;
   text-align: right;
 }
 
@@ -80,8 +79,33 @@
 
 .mergefile-meta {
   width: 50%;
-  padding: 5px 0 0 10px;
+  padding-left: 10px;
   box-sizing: border-box;
+}
+
+.mergefile-meta > div {
+  height: 22px;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.mergefile-meta-value,
+.mergefile-meta-label {
+  padding: 2px 4px;
+  border: 1px solid gold;
+}
+
+.mergefile-meta-label {
+  border-radius: 2px 0 0 2px;
+  color: var(--highlight-color);
+  border-right-width: 0;
+}
+
+.mergefile-meta-value {
+  border-radius: 0 2px 2px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .mergefile-missing {
@@ -91,6 +115,14 @@
   color: #aaa;
 }
 
-.mergefile-meta-label {
-  color: var(--highlight-color);
+/**
+ * INSERT LOCATION
+ */
+
+.insert-mode-container {
+  margin-bottom: 10px;
+}
+
+.insert-frame-container {
+  margin: 10px 0;
 }
