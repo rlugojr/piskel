@@ -17,8 +17,6 @@
 
     this.selectFileButton = this.container.querySelector('.select-mergefile-button');
     this.selectFileInput = this.container.querySelector('.select-mergefile-input');
-    this.nextButton = this.container.querySelector('.merge-next-button');
-    this.cancelButton = this.container.querySelector('.merge-cancel-button');
 
     this.addEventListener(this.selectFileButton, 'click', this.onSelectFileClick_);
     this.addEventListener(this.selectFileInput, 'change', this.onSelectFileChange_);
@@ -60,9 +58,11 @@
       this.updateMergeFilePreview_();
 
       this.nextButton.removeAttribute('disabled');
+      this.backButton.removeAttribute('disabled');
       this.cancelButton.removeAttribute('disabled');
     } else {
       this.nextButton.setAttribute('disabled', true);
+      this.backButton.setAttribute('disabled', true);
       this.cancelButton.setAttribute('disabled', true);
     }
   };

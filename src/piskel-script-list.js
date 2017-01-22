@@ -141,6 +141,7 @@
   "js/controller/dialogs/CheatsheetController.js",
   "js/controller/dialogs/merge/steps/AbstractMergeStep.js",
   "js/controller/dialogs/merge/steps/AdjustSize.js",
+  "js/controller/dialogs/merge/steps/ImageImport.js",
   "js/controller/dialogs/merge/steps/InsertLocation.js",
   "js/controller/dialogs/merge/steps/InvalidFile.js",
   "js/controller/dialogs/merge/steps/SelectFile.js",

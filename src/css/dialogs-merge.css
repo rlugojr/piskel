@@ -15,7 +15,7 @@
 .merge-step-container {
   width: 100%;
   height: 100%;
-  padding: 20px 10px 10px;
+  padding: 10px;
   box-sizing: border-box;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
   background: #444;
@@ -27,6 +27,11 @@
   right: 10px;
   text-align: right;
 }
+
+.merge-first-step .merge-back-button {
+  display: none;
+}
+
 
 /**
  * SELECT FILE
