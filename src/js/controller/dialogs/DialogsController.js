@@ -14,10 +14,6 @@
       template : 'templates/dialogs/browse-local.html',
       controller : ns.BrowseLocalController
     },
-    'import-image' : {
-      template : 'templates/dialogs/import-image.html',
-      controller : ns.ImportImageController
-    },
     'merge' : {
       template : 'templates/dialogs/merge.html',
       controller : ns.merge.MergeController

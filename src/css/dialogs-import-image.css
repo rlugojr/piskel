@@ -32,22 +32,23 @@
   border: 1px dashed #999;
   border-radius: 3px;
   margin-left: 50%;
+  top: 10px;
+
+  width: 250px;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .import-section-preview img {
-  max-width: 220px;
-  max-height: 220px;
+  max-width: 100%;
+  max-height: 100%;
   display: block;
-}
-
-.import-section-preview.no-border {
-  border-color: transparent;
 }
 
 .import-section-preview canvas {
   position: absolute;
-  left: 0;
-  top: 0;
 }
 
 .dialog-section-title {

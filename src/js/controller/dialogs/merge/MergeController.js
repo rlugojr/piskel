@@ -108,14 +108,21 @@
     var nextStep = null;
 
     if (step.name === 'IMAGE_IMPORT') {
-      this.wizard.goTo('SELECT_FILE');
+      // The image import step has an async processing to perform before switching to the next step.
+      step.instance.createPiskelFromImage().then(function (piskel) {
+        console.log(piskel);
+        this.mergeData.mergePiskel = piskel;
+        this.wizard.goTo('SELECT_FILE');
+        this.wizard.getCurrentStep().instance.onShow();
+      }.bind(this));
     } else if (step.name === 'SELECT_FILE') {
       this.wizard.goTo('ADJUST_SIZE');
+      this.wizard.getCurrentStep().instance.onShow();
     } else if (step.name === 'ADJUST_SIZE') {
       this.wizard.goTo('INSERT_LOCATION');
+      this.wizard.getCurrentStep().instance.onShow();
     } else {
       // do nothing but eh
     }
-    this.wizard.getCurrentStep().instance.onShow();
   };
 })();

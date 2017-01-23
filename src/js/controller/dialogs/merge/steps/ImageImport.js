@@ -44,6 +44,25 @@
     pskl.utils.FileUtils.readImageFile(this.file_, this.onImageLoaded_.bind(this));
   };
 
+  ns.ImageImport.prototype.createPiskelFromImage = function () {
+    return new Promise(function (resolve, reject) {
+      pskl.app.importService.newPiskelFromImage(
+        this.importedImage_,
+        {
+          importType: this.getImportType_(),
+          frameSizeX: this.getImportType_() === 'single' ?
+              this.resizeWidth.value : this.sanitizeInputValue_(this.frameSizeX, 1),
+          frameSizeY: this.getImportType_() === 'single' ?
+              this.resizeHeight.value : this.sanitizeInputValue_(this.frameSizeY, 1),
+          frameOffsetX: this.sanitizeInputValue_(this.frameOffsetX, 0),
+          frameOffsetY: this.sanitizeInputValue_(this.frameOffsetY, 0),
+          smoothing: !!this.smoothResize.checked
+        },
+        resolve
+      );
+    }.bind(this));
+  };
+
   ns.ImageImport.prototype.onImportTypeChange_ = function (evt) {
     if (this.getImportType_() === 'single') {
       // Using single image, so remove the frame grid
@@ -149,8 +168,6 @@
     this.frameOffsetX.value = 0;
     this.frameOffsetY.value = 0;
 
-    this.importPreview.style.width = 'auto';
-    this.importPreview.style.height = 'auto';
     this.importPreview.innerHTML = '';
     this.importPreview.appendChild(this.createImagePreview_());
   };
@@ -223,13 +240,12 @@
 
       // Set the line style to dashed
       context.lineWidth = 1;
-      context.setLineDash([2, 1]);
-      context.strokeStyle = '#000000';
+      // context.setLineDash([2, 1]);
+      context.strokeStyle = 'gold';
       context.stroke();
 
       // Show the canvas
       canvas.style.display = 'block';
-      this.importPreview.classList.add('no-border');
     } else {
       this.hideFrameGrid_();
     }
@@ -240,6 +256,5 @@
     if (canvas) {
       canvas.style.display = 'none';
     }
-    this.importPreview.classList.remove('no-border');
   };
 })();

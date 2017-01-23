@@ -1,11 +1,11 @@
 #dialog-container.merge {
   width: 550px;
-  height: 360px;
+  height: 300px;
   top : 50%;
   left : 50%;
   position : absolute;
   margin-left: -275px;
-  margin-top: -180px;
+  margin-top: -150px;
 }
 
 .merge .dialog-content {
@@ -64,17 +64,6 @@
 
 .has-merge-piskel .mergefile {
   display: flex;
-}
-
-.mergefile-preview {
-  width: 200px;
-  height: 115px;
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #666;
 }
 
 .mergefile-preview canvas {
