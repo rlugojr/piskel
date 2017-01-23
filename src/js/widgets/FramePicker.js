@@ -11,8 +11,8 @@
       '<button class="button frame-nav-last">&gt;&gt;</button>' +
     '</div>';
 
-  ns.FramePicker = function (piskelController, container) {
-    this.piskelController = piskelController;
+  ns.FramePicker = function (piskel, container) {
+    this.piskel = piskel;
     this.container = container;
 
     // Create internal wrapper that will contain the wizard steps.
@@ -47,22 +47,26 @@
   };
 
   ns.FramePicker.prototype.onLastClicked_ = function () {
-    this.setFrameIndex(this.piskelController.getFrameCount());
+    this.setFrameIndex(this.piskel.getFrameCount());
   };
 
   ns.FramePicker.prototype.onInputChange_ = function () {
     var index = parseInt(this.input.value, 10);
     if (isNaN(index)) {
-      this.input.value = this.piskelController.getCurrentFrameIndex();
+      this.input.value = 1;
       return;
     }
 
     index = Math.max(0, index);
-    index = Math.min(this.piskelController.getFrameCount(), index);
+    index = Math.min(this.getFrameCount_(), index);
 
     if (index !== this.currentFrameIndex) {
       this.setFrameIndex(index);
     }
+  };
+
+  ns.FramePicker.prototype.getFrameCount_ = function () {
+    return this.piskel.getLayerAt(0).getFrames().length;
   };
 
   ns.FramePicker.prototype.addEventListener = function (el, type, callback) {
@@ -70,7 +74,7 @@
   };
 
   ns.FramePicker.prototype.init = function () {
-    this.setFrameIndex(this.piskelController.getCurrentFrameIndex() + 1);
+    this.setFrameIndex(1);
     this.container.appendChild(this.wrapper);
   };
 
@@ -83,7 +87,7 @@
     this.frameViewer.innerHTML = '';
     this.frameViewer.appendChild(image);
 
-    var frameCount = this.piskelController.getFrameCount();
+    var frameCount = this.getFrameCount_();
     this.setEnabled_(this.firstButton, frameIndex !== 0);
     this.setEnabled_(this.previousButton, frameIndex !== 0);
     this.setEnabled_(this.nextButton, frameIndex !== frameCount);
@@ -101,8 +105,7 @@
       return new Image();
     }
 
-    var piskel = this.piskelController.getPiskel();
-    var frame = pskl.utils.LayerUtils.mergeFrameAt(piskel.getLayers(), frameIndex - 1);
+    var frame = pskl.utils.LayerUtils.mergeFrameAt(this.piskel.getLayers(), frameIndex - 1);
     return pskl.utils.FrameUtils.toImage(frame);
   };
 
