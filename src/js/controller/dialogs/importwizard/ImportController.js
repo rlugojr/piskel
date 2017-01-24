@@ -1,30 +1,30 @@
 (function () {
-  var ns = $.namespace('pskl.controller.dialogs.merge');
+  var ns = $.namespace('pskl.controller.dialogs.importwizard');
 
   var stepDefinitions = {
     'IMAGE_IMPORT' : {
       controller : ns.steps.ImageImport,
-      template : 'merge-image-import'
+      template : 'import-image-import'
     },
     'ADJUST_SIZE' : {
       controller : ns.steps.AdjustSize,
-      template : 'merge-adjust-size'
+      template : 'import-adjust-size'
     },
     'INSERT_LOCATION' : {
       controller : ns.steps.InsertLocation,
-      template : 'merge-insert-location'
+      template : 'import-insert-location'
     },
     'INVALID_FILE' : {
       controller : ns.steps.InvalidFile,
-      template : 'merge-invalid-file'
+      template : 'import-invalid-file'
     },
-    'SELECT_FILE' : {
-      controller : ns.steps.SelectFile,
-      template : 'merge-select-file'
+    'SELECT_MODE' : {
+      controller : ns.steps.SelectMode,
+      template : 'import-select-mode'
     }
   };
 
-  ns.MergeController = function (piskelController, args) {
+  ns.ImportController = function (piskelController, args) {
     this.piskelController = piskelController;
 
     // Merge data object used by steps to communicate and share their
@@ -32,9 +32,9 @@
     this.mergeData = {};
   };
 
-  pskl.utils.inherit(ns.MergeController, pskl.controller.dialogs.AbstractDialogController);
+  pskl.utils.inherit(ns.ImportController, pskl.controller.dialogs.AbstractDialogController);
 
-  ns.MergeController.prototype.init = function (initArgs) {
+  ns.ImportController.prototype.init = function (initArgs) {
     this.superclass.init.call(this);
 
     // Prepare mergeData  object and wizard steps.
@@ -42,13 +42,13 @@
     this.steps = this.createSteps_();
 
     // Start wizard widget.
-    var wizardContainer = document.querySelector('.merge-wizard-container');
+    var wizardContainer = document.querySelector('.import-wizard-container');
     this.wizard = new pskl.widgets.Wizard(this.steps, wizardContainer);
     this.wizard.init();
     this.wizard.goTo('IMAGE_IMPORT');
   };
 
-  ns.MergeController.prototype.destroy = function (file) {
+  ns.ImportController.prototype.destroy = function (file) {
     Object.keys(this.steps).forEach(function (stepName) {
       var step = this.steps[stepName];
       step.instance.destroy();
@@ -59,7 +59,7 @@
     this.superclass.destroy.call(this);
   };
 
-  ns.MergeController.prototype.createSteps_ = function () {
+  ns.ImportController.prototype.createSteps_ = function () {
     // The IMAGE_IMPORT step is used only if there is a single image file
     // being imported.
     var hasSingleImage = this.hasSingleImage_();
@@ -82,15 +82,15 @@
     }.bind(this));
 
     if (hasSingleImage) {
-      steps.IMAGE_IMPORT.el.classList.add('merge-first-step');
+      steps.IMAGE_IMPORT.el.classList.add('import-first-step');
     } else {
-      steps.SELECT_FILE.el.classList.add('merge-first-step');
+      steps.SELECT_MODE.el.classList.add('import-first-step');
     }
 
     return steps;
   };
 
-  ns.MergeController.prototype.hasSingleImage_ = function () {
+  ns.ImportController.prototype.hasSingleImage_ = function () {
     if (this.mergeData.rawFiles.length === 1) {
       var file = this.mergeData.rawFiles[0];
       return file.type.indexOf('image') === 0;
@@ -98,12 +98,12 @@
     return false;
   };
 
-  ns.MergeController.prototype.back = function (stepInstance) {
+  ns.ImportController.prototype.back = function (stepInstance) {
     this.wizard.back();
     this.wizard.getCurrentStep().instance.onShow();
   };
 
-  ns.MergeController.prototype.next = function (stepInstance) {
+  ns.ImportController.prototype.next = function (stepInstance) {
     var step = this.wizard.getCurrentStep();
     var nextStep = null;
 
@@ -112,10 +112,10 @@
       step.instance.createPiskelFromImage().then(function (piskel) {
         console.log(piskel);
         this.mergeData.mergePiskel = piskel;
-        this.wizard.goTo('SELECT_FILE');
+        this.wizard.goTo('SELECT_MODE');
         this.wizard.getCurrentStep().instance.onShow();
       }.bind(this));
-    } else if (step.name === 'SELECT_FILE') {
+    } else if (step.name === 'SELECT_MODE') {
       this.wizard.goTo('ADJUST_SIZE');
       this.wizard.getCurrentStep().instance.onShow();
     } else if (step.name === 'ADJUST_SIZE') {

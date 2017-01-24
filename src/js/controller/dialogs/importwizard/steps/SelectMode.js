@@ -1,28 +1,28 @@
 (function () {
-  var ns = $.namespace('pskl.controller.dialogs.merge.steps');
+  var ns = $.namespace('pskl.controller.dialogs.importwizard.steps');
 
-  ns.SelectFile = function (piskelController, mergeController, container) {
+  ns.SelectMode = function (piskelController, importController, container) {
     this.superclass.constructor.apply(this, arguments);
   };
 
-  pskl.utils.inherit(ns.SelectFile, ns.AbstractMergeStep);
+  pskl.utils.inherit(ns.SelectMode, ns.AbstractImportStep);
 
-  ns.SelectFile.prototype.init = function () {
+  ns.SelectMode.prototype.init = function () {
     this.superclass.init.call(this);
   };
 
-  ns.SelectFile.prototype.onShow = function () {
+  ns.SelectMode.prototype.onShow = function () {
     this.refresh_();
   };
 
-  ns.SelectFile.prototype.destroy = function () {
+  ns.SelectMode.prototype.destroy = function () {
     if (this.framePickerWidget) {
       this.framePickerWidget.destroy();
     }
     this.superclass.destroy.call(this);
   };
 
-  ns.SelectFile.prototype.refresh_ = function () {
+  ns.SelectMode.prototype.refresh_ = function () {
     var mergePiskel = this.mergeData.mergePiskel;
     if (mergePiskel) {
       this.updateMergeFilePreview_();
@@ -32,7 +32,7 @@
     }
   };
 
-  ns.SelectFile.prototype.updateMergeFilePreview_ = function () {
+  ns.SelectMode.prototype.updateMergeFilePreview_ = function () {
     var mergePiskel = this.mergeData.mergePiskel;
 
     var previewFrame = pskl.utils.LayerUtils.mergeFrameAt(mergePiskel.getLayers(), 0);
@@ -40,7 +40,7 @@
 
     // TODO : Shittiest lazy init of 2017 o/
     if (!this.framePickerWidget) {
-      var framePickerContainer = this.container.querySelector('.mergefile-preview');
+      var framePickerContainer = this.container.querySelector('.import-preview');
       this.framePickerWidget = new pskl.widgets.FramePicker(mergePiskel, framePickerContainer);
       this.framePickerWidget.init();
     } else {
@@ -48,13 +48,12 @@
       this.framePickerWidget.setFrameIndex(1);
     }
 
-    var metaHtml = pskl.utils.Template.getAndReplace('mergefile-meta-content', {
+    var metaHtml = pskl.utils.Template.getAndReplace('import-meta-content', {
       name : mergePiskel.getDescriptor().name,
       dimensions : mergePiskel.getWidth() + ' x ' + mergePiskel.getHeight(),
       frames : mergePiskel.getFrameCount(),
       layers : mergePiskel.getLayers().length
     });
-    this.container.querySelector('.mergefile-meta').innerHTML = metaHtml;
-    this.container.querySelector('.mergefile-container').classList.add('has-merge-piskel');
+    this.container.querySelector('.import-meta').innerHTML = metaHtml;
   };
 })();

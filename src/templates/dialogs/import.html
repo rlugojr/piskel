@@ -1,15 +1,15 @@
-<script type="text/template" id="templates/dialogs/merge.html">
+<script type="text/template" id="templates/dialogs/import.html">
   <div class="dialog-wrapper">
     <h3 class="dialog-head">
       Import and Merge
       <span class="dialog-close">X</span>
     </h3>
-    <div class="dialog-content merge-wizard-container"></div>
+    <div class="dialog-content import-wizard-container"></div>
   </div>
 </script>
 
-<script type="text/template" id="merge-image-import">
-<div class="merge-step-container">
+<script type="text/template" id="import-image-import">
+<div class="import-step-container">
   <div>
     <form action="" method="POST" name="import-image-form">
       <div class="import-section">
@@ -51,66 +51,63 @@
       </div>
     </form>
   </div>
-  <div class="merge-step-buttons">
-    <button class="merge-cancel-button button">cancel</button>
-    <button class="merge-back-button button">back</button>
-    <button class="merge-next-button button button-primary">next</button>
+  <div class="import-step-buttons">
+    <button class="import-cancel-button button">cancel</button>
+    <button class="import-back-button button">back</button>
+    <button class="import-next-button button button-primary">next</button>
   </div>
 </div>
 </script>
 
-<script type="text/template" id="merge-select-file">
-<div class="merge-step-container">
-  <div class="mergefile-container">
-    <div class="mergefile-missing">No file selected!</div>
-    <div class="mergefile">
-      <div class="mergefile-preview"></div>
-      <div class="mergefile-meta"></div>
-    </div>
+<script type="text/template" id="import-select-mode">
+<div class="import-step-container">
+  <div class="import-info">
+    <div class="import-preview"></div>
+    <div class="import-meta"></div>
   </div>
-  <div class="merge-step-buttons">
-    <button class="merge-cancel-button button">cancel</button>
-    <button class="merge-back-button button">back</button>
-    <button class="merge-next-button button button-primary">next</button>
+  <div class="import-step-buttons">
+    <button class="import-cancel-button button">cancel</button>
+    <button class="import-back-button button">back</button>
+    <button class="import-next-button button button-primary">next</button>
   </div>
 </div>
 </script>
 
-<script type="text/template" id="mergefile-meta-content">
-  <div class="mergefile-name">
-    <span class="mergefile-meta-label">Name</span>
-    <span class="mergefile-meta-value" title={{name}}>{{name}}</span>
+<script type="text/template" id="import-meta-content">
+  <div class="import-name">
+    <span class="import-meta-label">Name</span>
+    <span class="import-meta-value" title={{name}}>{{name}}</span>
   </div>
-  <div class="mergefile-dimensions">
-    <span class="mergefile-meta-label">Dimensions</span>
-    <span class="mergefile-meta-value">{{dimensions}}</span>
+  <div class="import-dimensions">
+    <span class="import-meta-label">Dimensions</span>
+    <span class="import-meta-value">{{dimensions}}</span>
   </div>
-  <div class="mergefile-frames">
-    <span class="mergefile-meta-label">Frames</span>
-    <span class="mergefile-meta-value">{{frames}}</span>
+  <div class="import-frames">
+    <span class="import-meta-label">Frames</span>
+    <span class="import-meta-value">{{frames}}</span>
   </div>
-  <div class="mergefile-layers">
-    <span class="mergefile-meta-label">Layers</span>
-    <span class="mergefile-meta-value">{{layers}}</span>
+  <div class="import-layers">
+    <span class="import-meta-label">Layers</span>
+    <span class="import-meta-value">{{layers}}</span>
   </div>
 </script>
 
-<script type="text/template" id="merge-adjust-size">
-<div class="merge-step-container">
+<script type="text/template" id="import-adjust-size">
+<div class="import-step-container">
   <div>Adjust the size of your import.</div>
   <div>Your sprite is bigger than the imported animation.</div>
-  <div class="mergefile-name"></div>
-  <div class="merge-anchor-container"></div>
-  <div class="merge-step-buttons">
-    <button class="merge-cancel-button button">cancel</button>
-    <button class="merge-back-button button">back</button>
-    <button class="merge-next-button button button-primary">next</button>
+  <div class="import-name"></div>
+  <div class="import-anchor-container"></div>
+  <div class="import-step-buttons">
+    <button class="import-cancel-button button">cancel</button>
+    <button class="import-back-button button">back</button>
+    <button class="import-next-button button button-primary">next</button>
   </div>
 </div>
 </script>
 
-<script type="text/template" id="merge-insert-location">
-<div class="merge-step-container">
+<script type="text/template" id="import-insert-location">
+<div class="import-step-container">
   <div class="insert-mode-container">
     <div>The imported animation contains <span class="insert-frames-count">X</span> frames</div>
     <div>
@@ -127,21 +124,21 @@
     <div class="insert-frame-preview"></div>
     <div class="insert-frame-meta"></div>
   </div>
-  <div class="merge-step-buttons">
-    <button class="merge-cancel-button button">cancel</button>
-    <button class="merge-back-button button">back</button>
-    <button class="merge-next-button button button-primary">next</button>
+  <div class="import-step-buttons">
+    <button class="import-cancel-button button">cancel</button>
+    <button class="import-back-button button">back</button>
+    <button class="import-next-button button button-primary">next</button>
   </div>
 </div>
 </script>
 
-<script type="text/template" id="merge-invalid-file">
-<div class="merge-step-container">
+<script type="text/template" id="import-invalid-file">
+<div class="import-step-container">
   <div>THIS IS AN INVALID FILEZ</div>
-  <div class="merge-step-buttons">
-    <button class="merge-cancel-button button">cancel</button>
-    <button class="merge-back-button button">back</button>
-    <button class="merge-next-button button button-primary">next</button>
+  <div class="import-step-buttons">
+    <button class="import-cancel-button button">cancel</button>
+    <button class="import-back-button button">back</button>
+    <button class="import-next-button button button-primary">next</button>
   </div>
 </div>
 </script>

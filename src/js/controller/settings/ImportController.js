@@ -16,8 +16,6 @@
     this.addEventListener('.browse-local-button', 'click', this.onBrowseLocalClick_);
     this.addEventListener('.file-input-button', 'click', this.onFileInputClick_);
 
-    this.addEventListener('.merge-button', 'click', this.onMergeButtonClick_);
-
     // different handlers, depending on the Environment
     if (pskl.utils.Environment.detectNodeWebkit()) {
       this.addEventListener('.open-piskel-button', 'click', this.openPiskelDesktop_);
@@ -79,17 +77,10 @@
     this.closeDrawer_();
   };
 
-  ns.ImportController.prototype.onMergeButtonClick_ = function (evt) {
-    $.publish(Events.DIALOG_SHOW, {
-      dialogId : 'merge'
-    });
-    this.closeDrawer_();
-  };
-
   ns.ImportController.prototype.openPiskelFile_ = function (file) {
     if (this.isPiskel_(file)) {
       $.publish(Events.DIALOG_SHOW, {
-        dialogId : 'merge',
+        dialogId : 'import',
         initArgs : {
           rawFiles: [file]
         }
@@ -109,7 +100,7 @@
     });
     if (areImages) {
       $.publish(Events.DIALOG_SHOW, {
-        dialogId : 'merge',
+        dialogId : 'import',
         initArgs : {
           rawFiles: files
         }
