@@ -78,7 +78,7 @@
   };
 
   ns.ImageImport.prototype.onResizeInputKeyUp_ = function (evt) {
-    var from = evt.target.getAttribute("name");
+    var from = evt.target.getAttribute('name');
     if (this.importedImage_) {
       this.synchronizeResizeFields_(evt.target.value, from);
     }
