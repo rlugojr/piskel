@@ -94,8 +94,8 @@
     this.setEnabled_(this.lastButton, frameIndex !== frameCount);
 
     if (frameIndex === 0) {
-      this.previousButton.setAttribute("disabled", true);
-      this.firstButton.setAttribute("disabled", true);
+      this.previousButton.setAttribute('disabled', true);
+      this.firstButton.setAttribute('disabled', true);
     }
   };
 
@@ -111,9 +111,9 @@
 
   ns.FramePicker.prototype.setEnabled_ = function (el, enabled) {
     if (enabled) {
-      el.removeAttribute("disabled");
+      el.removeAttribute('disabled');
     } else  {
-      el.setAttribute("disabled", true);
+      el.setAttribute('disabled', true);
     }
   };
 
