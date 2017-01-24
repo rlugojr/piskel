@@ -1,11 +1,11 @@
 (function () {
-  var ns = $.namespace('pskl.controller.dialogs.merge.steps');
+  var ns = $.namespace('pskl.controller.dialogs.importwizard.steps');
 
   ns.InsertLocation = function () {
     this.superclass.constructor.apply(this, arguments);
   };
 
-  pskl.utils.inherit(ns.InsertLocation, ns.AbstractMergeStep);
+  pskl.utils.inherit(ns.InsertLocation, ns.AbstractImportStep);
 
   ns.InsertLocation.prototype.init = function () {
     this.superclass.init.call(this);

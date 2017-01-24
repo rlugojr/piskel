@@ -1,13 +1,13 @@
 (function () {
-  var ns = $.namespace('pskl.controller.dialogs.merge.steps');
+  var ns = $.namespace('pskl.controller.dialogs.importwizard.steps');
 
-  ns.ImageImport = function (piskelController, mergeController, container) {
+  ns.ImageImport = function (piskelController, importController, container) {
     this.superclass.constructor.apply(this, arguments);
     this.importedImage_ = null;
     this.file_ = null;
   };
 
-  pskl.utils.inherit(ns.ImageImport, ns.AbstractMergeStep);
+  pskl.utils.inherit(ns.ImageImport, ns.AbstractImportStep);
 
   ns.ImageImport.prototype.init = function (file) {
     this.superclass.init.call(this);
