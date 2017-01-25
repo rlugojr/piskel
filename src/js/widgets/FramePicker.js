@@ -112,7 +112,7 @@
   ns.FramePicker.prototype.setEnabled_ = function (el, enabled) {
     if (enabled) {
       el.removeAttribute('disabled');
-    } else  {
+    } else {
       el.setAttribute('disabled', true);
     }
   };
