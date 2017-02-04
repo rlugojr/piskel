@@ -61,10 +61,27 @@
 
 <script type="text/template" id="import-select-mode">
 <div class="import-step-container">
+  <div class="import-mode">
+    <div class="import-mode-title">How do you want to import the new content?</div>
+    <label class="import-mode-option">
+      <input type="radio" checked="checked" name="import-mode" id="select-mode-replace" value="replace"/>
+      <span>Replace your current sprite</span>
+    </label>
+    <label class="import-mode-option">
+      <input type="radio" name="import-mode" id="select-mode-new" value="new"/>
+      <span>Create a new sprite</span>
+    </label>
+    <label class="import-mode-option">
+      <input type="radio" name="import-mode" id="select-mode-import" value="merge"/>
+      <span>Merge with your existing sprite</span>
+    </label>
+  </div>
+
   <div class="import-info">
     <div class="import-preview"></div>
     <div class="import-meta"></div>
   </div>
+
   <div class="import-step-buttons">
     <button class="import-cancel-button button">cancel</button>
     <button class="import-back-button button">back</button>
@@ -74,6 +91,9 @@
 </script>
 
 <script type="text/template" id="import-meta-content">
+  <div class="import-meta-title">
+    <span class="import-meta-label">Imported content details</span>
+  </div>
   <div class="import-name">
     <span class="import-meta-label">Name</span>
     <span class="import-meta-value" title={{name}}>{{name}}</span>
@@ -111,7 +131,7 @@
   <div class="insert-mode-container">
     <div>The imported animation contains <span class="insert-frames-count">X</span> frames</div>
     <div>
-      <input type="radio" checked="checked"name="insert-mode" id="insert-mode-new" value="new" checked="checked"/>
+      <input type="radio" name="insert-mode" id="insert-mode-new" value="new" checked="checked"/>
       <label for="insert-mode-new">Add new frames</label>
     </div>
     <div>

@@ -1,11 +1,11 @@
 #dialog-container.import {
-  width: 550px;
-  height: 300px;
+  width: 500px;
+  height: 350px;
   top : 50%;
   left : 50%;
   position : absolute;
-  margin-left: -275px;
-  margin-top: -150px;
+  margin-left: -250px;
+  margin-top: -175px;
 }
 
 .import .dialog-content {
@@ -58,8 +58,8 @@
   margin-left: 50%;
   top: 10px;
 
-  width: 250px;
-  height: 190px;
+  width: 220px;
+  height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,7 +123,7 @@
 }
 
 /**
- * SELECT FILE
+ * SELECT MODE
  */
 
 .import-info {
@@ -139,6 +139,11 @@
   width: 50%;
   padding-left: 10px;
   box-sizing: border-box;
+
+  /*center meta information horizontally*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .import-meta > div {
@@ -159,6 +164,11 @@
   border-right-width: 0;
 }
 
+.import-meta-title .import-meta-label {
+  border-right-width: 1px;
+  border-radius: 2px;
+}
+
 .import-meta-value {
   border-radius: 0 2px 2px 0;
   overflow: hidden;
@@ -171,6 +181,24 @@
   line-height: 70px;
   font-style: italic;
   color: #aaa;
+}
+
+.import-mode {
+  margin: 10px 0 20px 0;
+}
+
+.import-mode-title {
+  margin-bottom: 10px
+}
+
+.import-mode-option {
+  display: flex;
+  align-items: center ;
+  margin-bottom: 5px;
+}
+
+.import-mode-option :checked + span {
+  color: var(--highlight-color);
 }
 
 /**

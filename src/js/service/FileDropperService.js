@@ -35,7 +35,13 @@
       var isPiskel = /\.piskel$/i.test(file.name);
       var isPalette = /\.(gpl|txt|pal)$/i.test(file.name);
       if (isImage) {
-        pskl.utils.FileUtils.readImageFile(file, this.onImageLoaded_.bind(this));
+        $.publish(Events.DIALOG_SHOW, {
+          dialogId : 'import',
+          initArgs : {
+            rawFiles: [file]
+          }
+        });
+        // pskl.utils.FileUtils.readImageFile(file, this.onImageLoaded_.bind(this));
       } else if (isPiskel) {
         pskl.utils.PiskelFileUtils.loadFromFile(file, this.onPiskelFileLoaded_, this.onPiskelFileError_);
       } else if (isPalette) {
