@@ -26,12 +26,26 @@
     this.nextButton = this.wrapper.querySelector('.frame-nav-next');
     this.lastButton = this.wrapper.querySelector('.frame-nav-last');
     this.input = this.wrapper.querySelector('.frame-nav-input');
+  };
 
+  ns.FramePicker.prototype.init = function () {
+    // Add widget to its container
+    this.container.appendChild(this.wrapper);
+
+    // Attach event listeners
     this.addEventListener(this.firstButton, 'click', this.onFirstClicked_);
     this.addEventListener(this.previousButton, 'click', this.onPreviousClicked_);
     this.addEventListener(this.nextButton, 'click', this.onNextClicked_);
     this.addEventListener(this.lastButton, 'click', this.onLastClicked_);
     this.addEventListener(this.input, 'change', this.onInputChange_);
+
+    // Select the first frame
+    this.setFrameIndex(1);
+  };
+
+  ns.FramePicker.prototype.destroy = function () {
+    this.container.removeChild(this.wrapper);
+    pskl.utils.Event.removeAllEventListeners(this);
   };
 
   ns.FramePicker.prototype.onFirstClicked_ = function () {
@@ -73,11 +87,6 @@
     pskl.utils.Event.addEventListener(el, type, callback, this);
   };
 
-  ns.FramePicker.prototype.init = function () {
-    this.setFrameIndex(1);
-    this.container.appendChild(this.wrapper);
-  };
-
   ns.FramePicker.prototype.setFrameIndex = function (frameIndex) {
     this.currentFrameIndex = frameIndex;
     this.input.value = frameIndex;
@@ -101,12 +110,20 @@
 
   ns.FramePicker.prototype.getFrameAsImage_ = function (frameIndex) {
     if (frameIndex === 0) {
-      // TODO : Needs a special custom yolo image.
       return new Image();
     }
 
     var frame = pskl.utils.LayerUtils.mergeFrameAt(this.piskel.getLayers(), frameIndex - 1);
-    return pskl.utils.FrameUtils.toImage(frame);
+    var zoom = this.getZoomLevel_();
+    return pskl.utils.FrameUtils.toImage(frame, zoom);
+  };
+
+  ns.FramePicker.prototype.getZoomLevel_ = function () {
+    var viewerWidth = this.frameViewer.offsetWidth;
+    var viewerHeight = this.frameViewer.offsetHeight;
+    var wZoom = viewerWidth / this.piskel.width;
+    var hZoom = viewerHeight / this.piskel.height;
+    return Math.min(hZoom, wZoom);
   };
 
   ns.FramePicker.prototype.setEnabled_ = function (el, enabled) {
@@ -115,10 +132,5 @@
     } else {
       el.setAttribute('disabled', true);
     }
-  };
-
-  ns.FramePicker.prototype.destroy = function () {
-    this.container.removeChild(this.wrapper);
-    pskl.utils.Event.removeAllEventListeners(this);
   };
 })();
