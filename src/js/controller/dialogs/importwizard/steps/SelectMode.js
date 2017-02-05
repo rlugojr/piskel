@@ -45,9 +45,9 @@
 
     var importMode = this.mergeData.importMode;
     if (importMode !== ns.SelectMode.MODES.MERGE) {
-      this.nextButton.textContent = "finish";
+      this.nextButton.textContent = 'finish';
     } else {
-      this.nextButton.textContent = "next";
+      this.nextButton.textContent = 'next';
     }
   };
 
