@@ -105,24 +105,45 @@
 
   ns.ImportController.prototype.next = function (stepInstance) {
     var step = this.wizard.getCurrentStep();
-    var nextStep = null;
 
     if (step.name === 'IMAGE_IMPORT') {
       // The image import step has an async processing to perform before switching to the next step.
       step.instance.createPiskelFromImage().then(function (piskel) {
-        console.log(piskel);
         this.mergeData.mergePiskel = piskel;
         this.wizard.goTo('SELECT_MODE');
-        this.wizard.getCurrentStep().instance.onShow();
       }.bind(this));
     } else if (step.name === 'SELECT_MODE') {
-      this.wizard.goTo('ADJUST_SIZE');
-      this.wizard.getCurrentStep().instance.onShow();
+      if (this.mergeData.importMode !== ns.steps.SelectMode.MODES.MERGE) {
+        var message = 'This will replace your current animation,' +
+                      ' are you sure you want to continue?';
+
+        if (window.confirm(message)) {
+          this.finalizeImport_();
+        }
+      } else {
+        this.wizard.goTo('ADJUST_SIZE');
+      }
     } else if (step.name === 'ADJUST_SIZE') {
       this.wizard.goTo('INSERT_LOCATION');
-      this.wizard.getCurrentStep().instance.onShow();
-    } else {
-      // do nothing but eh
+    } else if (step.name === 'INSERT_LOCATION') {
+      this.finalizeImport_();
+    }
+  };
+
+  ns.ImportController.prototype.finalizeImport_ = function () {
+    var piskel = this.mergeData.mergePiskel;
+    var mode = this.mergeData.importMode;
+
+    if (mode === ns.steps.SelectMode.MODES.REPLACE) {
+      // Replace the current piskel and close the dialog.
+      this.piskelController.setPiskel(piskel);
+      this.closeDialog();
+    } else if (mode === ns.steps.SelectMode.MODES.NEW) {
+      console.log('import as new: not implemented yet');
+    } else if (mode === ns.steps.SelectMode.MODES.MERGE) {
+      // Need to also fetch resize options
+      // and insert location option
+      console.log('merge import: not implemented yet');
     }
   };
 })();

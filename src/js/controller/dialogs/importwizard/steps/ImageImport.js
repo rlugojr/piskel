@@ -44,6 +44,13 @@
     pskl.utils.FileUtils.readImageFile(this.file_, this.onImageLoaded_.bind(this));
   };
 
+  ns.ImageImport.prototype.onNextClick = function () {
+    this.createPiskelFromImage().then(function (piskel) {
+      this.mergeData.mergePiskel = piskel;
+      this.superclass.onNextClick.call(this);
+    }.bind(this));
+  };
+
   ns.ImageImport.prototype.createPiskelFromImage = function () {
     return new Promise(function (resolve, reject) {
       pskl.app.importService.newPiskelFromImage(

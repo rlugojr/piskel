@@ -59,6 +59,8 @@
     var previousStep = this.currentStep;
     this.currentStep = step;
     this.currentStep.el.classList.add('current-step');
+    this.currentStep.instance.onShow();
+
     if (previousStep) {
       this.previousSteps.push(previousStep);
       this.currentStep.el.classList.add('current-step-in');

@@ -5,10 +5,22 @@
     this.superclass.constructor.apply(this, arguments);
   };
 
+  ns.SelectMode.MODES = {
+    NEW : 'new',
+    REPLACE : 'replace',
+    MERGE : 'merge'
+  };
+
   pskl.utils.inherit(ns.SelectMode, ns.AbstractImportStep);
 
   ns.SelectMode.prototype.init = function () {
     this.superclass.init.call(this);
+
+    this.importMode = this.container.querySelector('.import-mode');
+    this.addEventListener(this.importMode, 'change', this.onImportModeChange_);
+
+    // Set the initial importMode value in the merge data.
+    this.mergeData.importMode = this.getSelectedMode_();
   };
 
   ns.SelectMode.prototype.onShow = function () {
@@ -30,6 +42,13 @@
     } else {
       this.nextButton.setAttribute('disabled', true);
     }
+
+    var importMode = this.mergeData.importMode;
+    if (importMode !== ns.SelectMode.MODES.MERGE) {
+      this.nextButton.textContent = "finish";
+    } else {
+      this.nextButton.textContent = "next";
+    }
   };
 
   ns.SelectMode.prototype.updateMergeFilePreview_ = function () {
@@ -38,12 +57,13 @@
     var previewFrame = pskl.utils.LayerUtils.mergeFrameAt(mergePiskel.getLayers(), 0);
     var image = pskl.utils.FrameUtils.toImage(previewFrame);
 
-    // TODO : Shittiest lazy init of 2017 o/
     if (!this.framePickerWidget) {
       var framePickerContainer = this.container.querySelector('.import-preview');
       this.framePickerWidget = new pskl.widgets.FramePicker(mergePiskel, framePickerContainer);
       this.framePickerWidget.init();
-    } else {
+    } else if (this.framePickerWidget.piskel != mergePiskel) {
+      // If the piskel displayed by the frame picker is different from the previous one,
+      // refresh the widget.
       this.framePickerWidget.piskel = mergePiskel;
       this.framePickerWidget.setFrameIndex(1);
     }
@@ -55,5 +75,14 @@
       layers : mergePiskel.getLayers().length
     });
     this.container.querySelector('.import-meta').innerHTML = metaHtml;
+  };
+
+  ns.SelectMode.prototype.onImportModeChange_ = function () {
+    this.mergeData.importMode = this.getSelectedMode_();
+    this.refresh_();
+  };
+
+  ns.SelectMode.prototype.getSelectedMode_ = function () {
+    return this.importMode.querySelector(':checked').value;
   };
 })();
