@@ -5,13 +5,23 @@
     this.superclass.constructor.apply(this, arguments);
   };
 
+  ns.AdjustSize.OPTIONS = {
+    CROP: 'crop',
+    ENLARGE: 'enlarge'
+  };
+
   pskl.utils.inherit(ns.AdjustSize, ns.AbstractImportStep);
 
   ns.AdjustSize.prototype.init = function () {
     this.superclass.init.call(this);
-    var anchorContainer = this.container.querySelector('.import-anchor-container');
+
+    // Create anchor widget
+    var anchorContainer = this.container.querySelector('.import-resize-anchor-container');
     this.anchorWidget = new pskl.widgets.AnchorWidget(anchorContainer, this.onAnchorChange_.bind(this));
     this.anchorWidget.setOrigin('TOPLEFT');
+
+    this.resizeInfoContainer = this.container.querySelector('.import-resize-info');
+    this.addEventListener(this.resizeInfoContainer, 'change', this.onResizeOptionChange_);
   };
 
   ns.AdjustSize.prototype.destroy = function () {
@@ -20,14 +30,76 @@
   };
 
   ns.AdjustSize.prototype.onShow = function () {
-    // TODO : Not really useful since the Step is not being removed/destroyed when
-    // transitioning out...
+    this.refresh_();
+  };
+
+  ns.AdjustSize.prototype.refresh_ = function () {
+    var isBigger = this.isImportedPiskelBigger_();
+    var resizeOption = this.mergeData.resize || ns.AdjustSize.OPTIONS.CROP;
+    var isCrop = resizeOption === ns.AdjustSize.OPTIONS.CROP;
+
+    // Refresh resize partial
+    var size = this.formatPiskelSize_(this.piskelController.getPiskel());
+    var newSize = this.formatPiskelSize_(this.mergeData.mergePiskel);
+    var markup;
+    if (isBigger) {
+      markup = pskl.utils.Template.getAndReplace('import-resize-bigger-partial', {
+        size : size,
+        newSize : newSize,
+        cropChecked : isCrop ? 'checked="checked"' : '',
+        enlargeChecked : !isCrop ? 'checked="checked"' : ''
+      });
+    } else {
+      markup = pskl.utils.Template.getAndReplace('import-resize-smaller-partial', {
+        size : size,
+        newSize : newSize
+      });
+    }
+    this.resizeInfoContainer.innerHTML = markup;
+
+    // Update anchor widget
     if (this.mergeData.origin) {
       this.anchorWidget.setOrigin(this.mergeData.origin);
+    }
+
+    // Update anchor widget info
+    var anchorInfo = this.container.querySelector('.import-resize-anchor-info');
+    if (isBigger && isCrop) {
+      anchorInfo.textContent = 'Select where the import should be cropped';
+    } else if (isBigger) {
+      anchorInfo.textContent = 'Select the anchor for resizing the canvas';
+    } else {
+      anchorInfo.textContent = 'Select where the import should be positioned';
     }
   };
 
   ns.AdjustSize.prototype.onAnchorChange_ = function (origin) {
     this.mergeData.origin = origin;
+  };
+
+  ns.AdjustSize.prototype.onResizeOptionChange_ = function () {
+    var value = this.resizeInfoContainer.querySelector(':checked').value;
+    if (this.mergeData.resize != value) {
+      this.mergeData.resize = value;
+      this.refresh_();
+    }
+  };
+
+  ns.AdjustSize.prototype.isImportedPiskelBigger_ = function () {
+    var piskel = this.mergeData.mergePiskel;
+    if (!piskel) {
+      return false;
+    }
+
+    return piskel.width > this.piskelController.getWidth() ||
+           piskel.height > this.piskelController.getHeight();
+  };
+
+  ns.AdjustSize.prototype.formatPiskelSize_ = function (piskel) {
+    if (!piskel) {
+      return '???';
+    }
+
+    return piskel.width + 'x' + piskel.height;
   };
 })();

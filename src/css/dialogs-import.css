@@ -202,6 +202,32 @@
 }
 
 /**
+ * ADJUST SIZE
+ */
+.import-resize-info {
+  margin: 10px 0 20px 0;
+}
+
+.import-resize-option {
+  display: flex;
+  align-items: center ;
+  margin-bottom: 5px;
+}
+
+.import-resize-anchor-info,
+.import-resize-option-label {
+  margin-bottom: 10px;
+}
+
+.import-resize-section {
+  margin-bottom: 20px;
+}
+
+.import-resize-option :checked + span {
+  color: var(--highlight-color);
+}
+
+/**
  * INSERT LOCATION
  */
 

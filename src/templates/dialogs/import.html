@@ -114,14 +114,44 @@
 
 <script type="text/template" id="import-adjust-size">
 <div class="import-step-container">
-  <div>Adjust the size of your import.</div>
-  <div>Your sprite is bigger than the imported animation.</div>
-  <div class="import-name"></div>
-  <div class="import-anchor-container"></div>
+  <div class="import-resize-info"></div>
+  <div class="import-resize-anchor import-resize-section">
+    <div class="import-resize-anchor-info"></div>
+    <div class="import-resize-anchor-container"></div>
+  </div>
   <div class="import-step-buttons">
     <button class="import-cancel-button button">cancel</button>
     <button class="import-back-button button">back</button>
     <button class="import-next-button button button-primary">next</button>
+  </div>
+</div>
+</script>
+
+<script type="text/template" id="import-resize-bigger-partial">
+<div class="import-resize-bigger">
+  <div class="import-resize-section">
+    The import is bigger ({{newSize}}) than the current canvas ({{size}}).
+  </div>
+  <div class="import-resize-section">
+    <div class="import-resize-option-label">
+      The canvas or the imported content has to be resized before merging:
+    </div>
+    <label class="import-resize-option">
+      <input type="radio" name="resize-mode" id="resize-option-crop" value="crop" {{cropChecked}}/>
+      <span>Crop the imported content</span>
+    </label>
+    <label class="import-resize-option">
+      <input type="radio" name="resize-mode" id="resize-option-enlarge" value="enlarge" {{enlargeChecked}}/>
+      <span>Resize your current canvas</span>
+    </label>
+  </div>
+</div>
+</script>
+
+<script type="text/template" id="import-resize-smaller-partial">
+<div class="import-resize-smaller">
+  <div class="import-resize-section">
+    The import is smaller ({{newSize}}) than the current canvas ({{size}}).
   </div>
 </div>
 </script>

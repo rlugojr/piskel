@@ -120,6 +120,8 @@
         if (window.confirm(message)) {
           this.finalizeImport_();
         }
+      } else if (this.hasSameSize_()) {
+        this.wizard.goTo('INSERT_LOCATION');
       } else {
         this.wizard.goTo('ADJUST_SIZE');
       }
@@ -128,6 +130,16 @@
     } else if (step.name === 'INSERT_LOCATION') {
       this.finalizeImport_();
     }
+  };
+
+  ns.ImportController.prototype.hasSameSize_ = function () {
+    var piskel = this.mergeData.mergePiskel;
+    if (!piskel) {
+      return false;
+    }
+
+    return piskel.width === this.piskelController.getWidth() &&
+           piskel.height === this.piskelController.getHeight();
   };
 
   ns.ImportController.prototype.finalizeImport_ = function () {

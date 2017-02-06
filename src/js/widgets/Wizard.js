@@ -58,16 +58,22 @@
 
     var previousStep = this.currentStep;
     this.currentStep = step;
-    this.currentStep.el.classList.add('current-step');
     this.currentStep.instance.onShow();
 
     if (previousStep) {
       this.previousSteps.push(previousStep);
+
+      // Update classes to trigger animation.
       this.currentStep.el.classList.add('current-step-in');
+
       window.setTimeout(function () {
+        // Cleanup transition classes after animation.
         this.currentStep.el.classList.remove('current-step-in');
         previousStep.el.classList.remove('current-step');
+        this.currentStep.el.classList.add('current-step');
       }.bind(this), TRANSITION_DURATION);
+    } else {
+      this.currentStep.el.classList.add('current-step');
     }
   };
 
@@ -87,10 +93,14 @@
     }
 
     this.currentStep = previousStep;
+
+    // Update classes to trigger animation.
     backedStep.el.classList.add('current-step-out');
+    backedStep.el.classList.remove('current-step');
     this.currentStep.el.classList.add('current-step');
+
     window.setTimeout(function () {
-      backedStep.el.classList.remove('current-step');
+      // Cleanup transition classes after animation.
       backedStep.el.classList.remove('current-step-out');
     }.bind(this), TRANSITION_DURATION);
   };
